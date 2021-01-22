@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		099A777525B8151800D91254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A777425B8151800D91254 /* AppDelegate.swift */; };
-		099A778925B8151800D91254 /* Application.AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A778825B8151800D91254 /* Application.AppDelegate.swift */; };
 		099A778C25B8151800D91254 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A778B25B8151800D91254 /* Constants.swift */; };
 		099A778F25B8151800D91254 /* Entitlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A778E25B8151800D91254 /* Entitlements.swift */; };
 		099A779225B8151800D91254 /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A779125B8151800D91254 /* Localizations.swift */; };
@@ -48,6 +47,7 @@
 		099A78C725B8457100D91254 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A78C225B8457100D91254 /* DetailPresenter.swift */; };
 		09ADC27B25BAA68900D019B1 /* PrimarySplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADC27A25BAA68900D019B1 /* PrimarySplitViewController.swift */; };
 		09ADC28325BAA7DF00D019B1 /* SplitViewPrimaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADC28225BAA7DF00D019B1 /* SplitViewPrimaryController.swift */; };
+		09ADC28E25BAC55000D019B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADC28D25BAC55000D019B1 /* SceneDelegate.swift */; };
 		357AF8B872E3D165C80A2DAD /* Pods_Catalyst_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2DBB56E14F78642BAD503 /* Pods_Catalyst_Demo.framework */; };
 		5E5BFBF527F69A6CF1FE4806 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C96B52AD24B964A6D68AD8 /* Pods_UnitTests.framework */; };
 		E5A81303FFBD1F39BB08DF7A /* Pods_Catalyst_Demo_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43715C6091D850479E614235 /* Pods_Catalyst_Demo_UITests.framework */; };
@@ -75,7 +75,6 @@
 		096D4AA7AD1617098C7C8473 /* Pods-Catalyst-Demo.dev staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catalyst-Demo.dev staging.xcconfig"; path = "Target Support Files/Pods-Catalyst-Demo/Pods-Catalyst-Demo.dev staging.xcconfig"; sourceTree = "<group>"; };
 		099A777125B8151800D91254 /* .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
 		099A777425B8151800D91254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		099A778825B8151800D91254 /* Application.AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.AppDelegate.swift; sourceTree = "<group>"; };
 		099A778B25B8151800D91254 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		099A778E25B8151800D91254 /* Entitlements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entitlements.swift; sourceTree = "<group>"; };
 		099A779125B8151800D91254 /* Localizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
@@ -129,6 +128,7 @@
 		099A78C225B8457100D91254 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		09ADC27A25BAA68900D019B1 /* PrimarySplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimarySplitViewController.swift; sourceTree = "<group>"; };
 		09ADC28225BAA7DF00D019B1 /* SplitViewPrimaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewPrimaryController.swift; sourceTree = "<group>"; };
+		09ADC28D25BAC55000D019B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0AE5C20CB387F9F56623AABA /* Pods-Catalyst-Demo-UITests.dev staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catalyst-Demo-UITests.dev staging.xcconfig"; path = "Target Support Files/Pods-Catalyst-Demo-UITests/Pods-Catalyst-Demo-UITests.dev staging.xcconfig"; sourceTree = "<group>"; };
 		15D2DBB56E14F78642BAD503 /* Pods_Catalyst_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catalyst_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17AC8E614ACB1F23AEF0AC99 /* Pods-Catalyst-Demo-UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catalyst-Demo-UITests.release.xcconfig"; path = "Target Support Files/Pods-Catalyst-Demo-UITests/Pods-Catalyst-Demo-UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -210,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				099A782F25B820C000D91254 /* .entitlements */,
-				099A777425B8151800D91254 /* AppDelegate.swift */,
 				099A77B625B8151B00D91254 /* Assets.xcassets */,
 				099A77B825B8151B00D91254 /* LaunchScreen.storyboard */,
 				099A77BB25B8151B00D91254 /* Info.plist */,
@@ -242,7 +241,8 @@
 		099A778725B8151800D91254 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				099A778825B8151800D91254 /* Application.AppDelegate.swift */,
+				099A777425B8151800D91254 /* AppDelegate.swift */,
+				09ADC28D25BAC55000D019B1 /* SceneDelegate.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -792,7 +792,6 @@
 				09ADC27B25BAA68900D019B1 /* PrimarySplitViewController.swift in Sources */,
 				099A787B25B8221200D91254 /* API.swift in Sources */,
 				099A78C625B8457100D91254 /* DetailInteractor.swift in Sources */,
-				099A778925B8151800D91254 /* Application.AppDelegate.swift in Sources */,
 				099A782B25B81E4600D91254 /* HomeTableViewCell.swift in Sources */,
 				099A781D25B81A3400D91254 /* HomeViewController.swift in Sources */,
 				099A778F25B8151800D91254 /* Entitlements.swift in Sources */,
@@ -801,6 +800,7 @@
 				099A78B025B832A500D91254 /* RefreshableViewProtocol.swift in Sources */,
 				099A78A525B8271A00D91254 /* CountrySummaryModel.swift in Sources */,
 				099A77A725B8151800D91254 /* Utilities.swift in Sources */,
+				09ADC28E25BAC55000D019B1 /* SceneDelegate.swift in Sources */,
 				099A781F25B81A3400D91254 /* HomePresenter.swift in Sources */,
 				099A77A125B8151800D91254 /* Protocols.swift in Sources */,
 				099A787725B8221200D91254 /* EmptyAPIResponse.swift in Sources */,
@@ -1161,6 +1161,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = "Dev Production";
@@ -1277,6 +1278,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1299,6 +1301,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1321,6 +1324,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1343,6 +1347,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1382,7 +1387,7 @@
 		};
 		099A77E025B8151B00D91254 /* Dev Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8F7329E8DFF8C34579B00C3 /* Pods-Catalyst-Demo.dev production.xcconfig */;
+			baseConfigurationReference = 099A77B225B8151800D91254 /* DevProduction.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1410,6 +1415,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1432,6 +1438,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
