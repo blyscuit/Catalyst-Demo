@@ -30,6 +30,7 @@ extension HomeRouter: HomeRouterInput {
     func showDetail(id: String) {
         let module = DetailModule()
         module.input.setID(id)
-        viewController?.navigationController?.pushViewController(module.view, animated: true)
+        let navVC = UINavigationController(rootViewController: module.view)
+        viewController?.navigationController?.splitViewController?.showDetailViewController(navVC, sender: nil)
     }
 }

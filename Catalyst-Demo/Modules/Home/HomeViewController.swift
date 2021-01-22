@@ -11,7 +11,7 @@ import SnapKit
 import NimbleExtension
 
 // sourcery: AutoMockable
-protocol HomeViewInput: AnyObject, RefreshableViewInput {
+protocol HomeViewInput: AnyObject, RefreshableViewInput, SplitViewPrimaryView {
 
     func configure()
     func updateViewModels(_ viewModels: [HomeTableViewCell.ViewModel])
@@ -34,6 +34,7 @@ final class HomeViewController: UIViewController {
     let refreshControl = AnimatableRefreshControl()
 
     var output: HomeViewOutput?
+    var isPresenting: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()

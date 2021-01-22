@@ -11,6 +11,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var navigationController = UINavigationController()
+    var detailNavigationController = UINavigationController()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -21,9 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         let module = HomeModule()
-        let navigationController = UINavigationController(rootViewController: module.view)
+        let detailModule = DetailModule()
 
-        window?.rootViewController = navigationController
+//        module.output = detailModule.input
+
+        navigationController = UINavigationController(rootViewController: module.view)
+        detailNavigationController = UINavigationController(rootViewController: detailModule.view)
+
+        let splitViewController =  PrimarySplitViewController()
+        splitViewController.viewControllers = [navigationController, detailNavigationController]
+
+        window?.rootViewController = splitViewController
         window?.makeKeyAndVisible()
 
 
@@ -75,4 +85,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         builder.insertChild(menu, atStartOfMenu: .file)
     }
 }
-

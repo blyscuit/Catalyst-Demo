@@ -46,6 +46,8 @@
 		099A78C525B8457100D91254 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A78C025B8457100D91254 /* DetailViewController.swift */; };
 		099A78C625B8457100D91254 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A78C125B8457100D91254 /* DetailInteractor.swift */; };
 		099A78C725B8457100D91254 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A78C225B8457100D91254 /* DetailPresenter.swift */; };
+		09ADC27B25BAA68900D019B1 /* PrimarySplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADC27A25BAA68900D019B1 /* PrimarySplitViewController.swift */; };
+		09ADC28325BAA7DF00D019B1 /* SplitViewPrimaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADC28225BAA7DF00D019B1 /* SplitViewPrimaryController.swift */; };
 		357AF8B872E3D165C80A2DAD /* Pods_Catalyst_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2DBB56E14F78642BAD503 /* Pods_Catalyst_Demo.framework */; };
 		5E5BFBF527F69A6CF1FE4806 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C96B52AD24B964A6D68AD8 /* Pods_UnitTests.framework */; };
 		E5A81303FFBD1F39BB08DF7A /* Pods_Catalyst_Demo_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43715C6091D850479E614235 /* Pods_Catalyst_Demo_UITests.framework */; };
@@ -125,6 +127,8 @@
 		099A78C025B8457100D91254 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		099A78C125B8457100D91254 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
 		099A78C225B8457100D91254 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		09ADC27A25BAA68900D019B1 /* PrimarySplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimarySplitViewController.swift; sourceTree = "<group>"; };
+		09ADC28225BAA7DF00D019B1 /* SplitViewPrimaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewPrimaryController.swift; sourceTree = "<group>"; };
 		0AE5C20CB387F9F56623AABA /* Pods-Catalyst-Demo-UITests.dev staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catalyst-Demo-UITests.dev staging.xcconfig"; path = "Target Support Files/Pods-Catalyst-Demo-UITests/Pods-Catalyst-Demo-UITests.dev staging.xcconfig"; sourceTree = "<group>"; };
 		15D2DBB56E14F78642BAD503 /* Pods_Catalyst_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catalyst_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17AC8E614ACB1F23AEF0AC99 /* Pods-Catalyst-Demo-UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catalyst-Demo-UITests.release.xcconfig"; path = "Target Support Files/Pods-Catalyst-Demo-UITests/Pods-Catalyst-Demo-UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 		099A77A825B8151800D91254 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				09ADC27925BAA67E00D019B1 /* PrimarySplitViewController */,
 				099A78AC25B832A500D91254 /* PullToRefresh */,
 			);
 			path = Views;
@@ -464,6 +469,15 @@
 				099A78C225B8457100D91254 /* DetailPresenter.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		09ADC27925BAA67E00D019B1 /* PrimarySplitViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09ADC27A25BAA68900D019B1 /* PrimarySplitViewController.swift */,
+				09ADC28225BAA7DF00D019B1 /* SplitViewPrimaryController.swift */,
+			);
+			path = PrimarySplitViewController;
 			sourceTree = "<group>";
 		};
 		88D1EB8496F38BBE7A58404E /* Frameworks */ = {
@@ -766,6 +780,7 @@
 				099A787A25B8221200D91254 /* Request.swift in Sources */,
 				099A787C25B8221200D91254 /* RequestConfiguration.swift in Sources */,
 				099A78AF25B832A500D91254 /* AnimatableRefreshControl.swift in Sources */,
+				09ADC28325BAA7DF00D019B1 /* SplitViewPrimaryController.swift in Sources */,
 				099A787625B8221200D91254 /* APIError.swift in Sources */,
 				099A779225B8151800D91254 /* Localizations.swift in Sources */,
 				099A787E25B8221200D91254 /* DecoderFactory.swift in Sources */,
@@ -774,6 +789,7 @@
 				099A787925B8221200D91254 /* BaseModels.swift in Sources */,
 				099A78C325B8457100D91254 /* DetailRouter.swift in Sources */,
 				099A781E25B81A3400D91254 /* HomeInteractor.swift in Sources */,
+				09ADC27B25BAA68900D019B1 /* PrimarySplitViewController.swift in Sources */,
 				099A787B25B8221200D91254 /* API.swift in Sources */,
 				099A78C625B8457100D91254 /* DetailInteractor.swift in Sources */,
 				099A778925B8151800D91254 /* Application.AppDelegate.swift in Sources */,
