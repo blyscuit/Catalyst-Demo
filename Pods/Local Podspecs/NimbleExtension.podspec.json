@@ -1,0 +1,20 @@
+{
+  "name": "NimbleExtension",
+  "summary": "Swifter Swift development.",
+  "version": "0.1.0",
+  "license": {
+    "type": "MIT"
+  },
+  "homepage": "https://github.com/nimblehq/NimbleExtension",
+  "authors": {
+    "Nimble": "dev@nimblehq.co"
+  },
+  "source": {
+    "git": "https://github.com/nimblehq/NimbleExtension",
+    "branch": "master"
+  },
+  "source_files": "NimbleExtension/Sources/**/*.swift",
+  "platforms": {
+    "ios": "8.0"
+  }
+}

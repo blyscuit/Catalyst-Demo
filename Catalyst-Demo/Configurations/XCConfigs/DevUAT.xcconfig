@@ -1,0 +1,7 @@
+#include "Base/Debug.xcconfig"
+
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) UAT=1
+PRODUCT_BUNDLE_IDENTIFIER = com.nimble.Catalyst-Demo.uat
+PRODUCT_NAME = $(TARGET_NAME) UAT
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) UAT
+							

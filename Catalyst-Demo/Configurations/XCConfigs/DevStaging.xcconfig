@@ -1,0 +1,8 @@
+#include "Base/Debug.xcconfig"
+#include "../../../Pods/Target Support Files/Pods-Catalyst-Demo/Pods-Catalyst-Demo.dev staging.xcconfig"
+
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) STAGING=1 
+PRODUCT_BUNDLE_IDENTIFIER = com.nimble.Catalyst-Demo.staging
+PRODUCT_NAME = $(TARGET_NAME) Staging
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) STAGING
+							

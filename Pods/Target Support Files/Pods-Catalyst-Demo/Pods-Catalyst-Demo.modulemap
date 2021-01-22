@@ -1,0 +1,6 @@
+framework module Pods_Catalyst_Demo {
+  umbrella header "Pods-Catalyst-Demo-umbrella.h"
+
+  export *
+  module * { export * }
+}
