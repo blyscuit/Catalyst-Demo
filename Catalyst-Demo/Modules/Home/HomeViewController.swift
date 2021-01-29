@@ -36,6 +36,25 @@ final class HomeViewController: UIViewController {
     var output: HomeViewOutput?
     var isPresenting: Bool = true
 
+    override var canBecomeFirstResponder: Bool { true }
+    override var keyCommands: [UIKeyCommand]? {
+        let refreshKeyCommand
+          = UIKeyCommand(input: "R",
+                         modifierFlags: .command,
+                         action: #selector(refresh(_:)))
+        refreshKeyCommand.discoverabilityTitle = "Refresh"
+        let upKeyCommand
+          = UIKeyCommand(input: "[",
+                         modifierFlags: [.command],
+                         action: #selector(goToPrevious))
+        upKeyCommand.discoverabilityTitle = "Previous Entry"
+        let downKeyCommand
+          = UIKeyCommand(input: "]",
+                         modifierFlags: [.command],
+                         action: #selector(goToNext))
+        downKeyCommand.discoverabilityTitle = "Next Entry"
+        return [refreshKeyCommand, upKeyCommand, downKeyCommand]
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewDidLoad()
@@ -86,6 +105,30 @@ extension HomeViewController {
     @objc func refresh(_ sender: AnyObject) {
         output?.didRefresh()
     }
+
+    @objc func goToPrevious() {
+        guard let index = tableView.indexPathForSelectedRow?.row,
+              index > 0 else { return }
+        let previousIndex = index - 1
+        let indexPath = IndexPath(row: previousIndex,
+                                  section: 0)
+        tableView.selectRow(at: indexPath,
+                            animated: false,
+                            scrollPosition: .middle)
+        output?.didSelect(id: viewModels[indexPath.row].country)
+    }
+
+    @objc func goToNext() {
+        guard let index = tableView.indexPathForSelectedRow?.row,
+              index < viewModels.count - 1 else { return }
+        let nextIndex = index + 1
+        let indexPath = IndexPath(row: nextIndex,
+                                  section: 0)
+        tableView.selectRow(at: indexPath,
+                            animated: false,
+                            scrollPosition: .middle)
+        output?.didSelect(id: viewModels[indexPath.row].country)
+    }
 }
 
 // MARK: - UITableView
@@ -99,11 +142,78 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(HomeTableViewCell.self)
         cell.configure(with: viewModels[indexPath.row])
+        let contextInteraction
+            = UIContextMenuInteraction(delegate: self)
+        cell.addInteraction(contextInteraction)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+//        tableView.deselectRow(at: indexPath, animated: true)
         output?.didSelect(id: viewModels[indexPath.row].country)
+    }
+}
+
+// MARK: - UIContextMenuInteractionDelegate
+
+extension HomeViewController: UIContextMenuInteractionDelegate {
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+
+        //1
+        let locationInTableView =
+            interaction.location(in: tableView)
+        //2
+        guard let indexPath = tableView
+                .indexPathForRow(at: locationInTableView)
+        else { return nil }
+        //3
+        //        let entry = DataService.shared.allEntries[indexPath.row]
+        //4
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil) { _ -> UIMenu? in
+
+            //5
+            var rootChildren: [UIMenuElement] = []
+            //6
+            let noOpAction = self.createNoOpAction()
+            //7
+            rootChildren.append(noOpAction)
+            rootChildren.append(self.addOpenNewWindowAction())
+            //8
+            let menu = UIMenu(title: "", image: nil,
+                              identifier: nil, options: [],
+                              children: rootChildren)
+            return menu
+        }
+    }
+
+    //1
+    func createNoOpAction() -> UIAction {
+        let noOpAction = UIAction(title: "Do Nothing",image: nil,
+                                  identifier: nil, discoverabilityTitle: nil,attributes: [],
+                                  state: .off) { _ in
+            // Do nothing
+        }
+        return noOpAction
+    }
+
+    func addOpenNewWindowAction() -> UIAction {
+        //1
+        let openInNewWindowAction = UIAction(
+            title: "Open in New Window",
+            image: UIImage(systemName: "uiwindow.split.2x1"),
+            identifier: nil,
+            discoverabilityTitle: nil,
+            attributes: [],
+            state: .off) { _ in
+            //2
+            self.createNewWindow() }
+        return openInNewWindowAction
+    }
+
+    func createNewWindow() {
+        UIApplication.shared.requestSceneSessionActivation(nil, userActivity: nil, options: nil, errorHandler: nil)
     }
 }
