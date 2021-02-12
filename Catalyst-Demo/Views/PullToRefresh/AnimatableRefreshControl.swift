@@ -19,5 +19,6 @@ final class AnimatableRefreshControl: UIRefreshControl {
         UIView.performWithoutAnimation { endRefreshing() }
         beginRefreshing()
         scrollView.contentOffset = offset
+        backgroundColor = .systemBackground
     }
 }

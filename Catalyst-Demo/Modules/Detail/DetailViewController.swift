@@ -35,6 +35,12 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         output?.viewDidLoad()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        #if targetEnvironment(macCatalyst)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        #endif
+    }
 }
 
 // MARK: - DetailViewInput
@@ -74,9 +80,11 @@ extension DetailViewController {
     }
 
     private func setUpViews() {
+        view.backgroundColor = .systemBackground
 
         graphButton.setTitle("Graph", for: .normal)
         graphButton.addTarget(self, action: #selector(didTapGraphButton), for: .touchUpInside)
+        graphButton.setTitleColor(titleLabel.textColor, for: .normal)
 
         #if targetEnvironment(macCatalyst)
         navigationController?.navigationBar.isHidden = true

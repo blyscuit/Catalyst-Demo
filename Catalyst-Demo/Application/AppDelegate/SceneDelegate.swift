@@ -39,11 +39,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let module = HomeModule()
         let detailModule = DetailModule()
 
-        var detailNavigationController = UINavigationController()
-        detailNavigationController = UINavigationController(rootViewController: detailModule.view)
+        var homeNavigationController = UINavigationController()
+        homeNavigationController = UINavigationController(rootViewController: module.view)
 
         let splitViewController =  PrimarySplitViewController()
-        splitViewController.viewControllers = [module.view, detailNavigationController]
+        splitViewController.viewControllers = [homeNavigationController, detailModule.view]
 
         window?.rootViewController = splitViewController
         window?.makeKeyAndVisible()
@@ -109,7 +109,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 }
-
+#if targetEnvironment(macCatalyst)
 extension NSToolbarItem.Identifier {
     static let favouriteEntry =
         NSToolbarItem.Identifier(rawValue: "FavouriteEntry")
@@ -178,3 +178,4 @@ extension SceneDelegate: NSToolbarDelegate {
     @objc private func favEntry() {
     }
 }
+#endif

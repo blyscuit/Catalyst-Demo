@@ -23,6 +23,7 @@ protocol HomeViewOutput: AnyObject {
     func viewDidLoad()
     func didRefresh()
     func didSelect(id: String)
+    func didSearch(text: String?)
 }
 
 final class HomeViewController: UIViewController {
@@ -35,6 +36,7 @@ final class HomeViewController: UIViewController {
 
     var output: HomeViewOutput?
     var isPresenting: Bool = true
+    var resultSearchController = UISearchController()
 
     override var canBecomeFirstResponder: Bool { true }
     override var keyCommands: [UIKeyCommand]? {
@@ -103,12 +105,22 @@ extension HomeViewController {
         view.addSubview(tableView)
 
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(view.snp.topMargin)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
 
     private func setUpViews() {
         setUpTableView()
+
+        setUpSearchViewController()
+
+        #if targetEnvironment(macCatalyst)
+        navigationController?.navigationBar.isHidden = true
+        #endif
+        // needs this for UISearchController to hide when push
+        self.definesPresentationContext = true
+        title = "List"
     }
 
     private func setUpTableView() {
@@ -118,6 +130,19 @@ extension HomeViewController {
         tableView.tableFooterView = UIView()
         tableView.allowsMultipleSelection = false
         setUpRefreshControl(with: #selector(self.refresh(_:)))
+    }
+
+    private func setUpSearchViewController() {
+        resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+
+            tableView.tableHeaderView = controller.searchBar
+
+            return controller
+        })()
     }
 
     @objc func refresh(_ sender: AnyObject) {
@@ -146,6 +171,16 @@ extension HomeViewController {
                             animated: false,
                             scrollPosition: .middle)
         output?.didSelect(id: viewModels[indexPath.row].country)
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension HomeViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchText = searchController.searchBar.text
+        output?.didSearch(text: searchText)
     }
 }
 

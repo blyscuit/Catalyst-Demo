@@ -29,7 +29,6 @@ extension DetailRouter: DetailRouterInput {
 
     func showGraph(country: String) {
         let module = GraphModule(country: country)
-        let navigationViewController = viewController?.splitViewController?.children.last as? UINavigationController
-        navigationViewController?.pushViewController(module.view, animated: true)
+        viewController?.navigationController?.pushViewController(module.view, animated: true)
     }
 }

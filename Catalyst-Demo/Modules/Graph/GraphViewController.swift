@@ -37,13 +37,7 @@ final class GraphViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         #if targetEnvironment(macCatalyst)
-        navigationController?.navigationBar.isHidden = false
-        #endif
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        #if targetEnvironment(macCatalyst)
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.setNavigationBarHidden(false, animated: animated)
         #endif
     }
 }
@@ -53,6 +47,7 @@ final class GraphViewController: UIViewController {
 extension GraphViewController: GraphViewInput {
 
     func configure() {
+        view.backgroundColor = .systemBackground
         view.addSubview(embedView)
 
         embedView.snp.makeConstraints {
