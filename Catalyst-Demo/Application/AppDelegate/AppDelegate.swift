@@ -73,12 +73,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             modifierFlags: .command
         )
 
+        let searchCommand = UIKeyCommand(
+            title: "Search",
+            action: #selector(HomeViewController.beginSearch),
+            input: "F",
+            modifierFlags: .command
+        )
+
         let menu = UIMenu(
             title: "",
             image: nil,
             identifier: UIMenu.Identifier("Control"),
             options: .displayInline,
-            children: [refreshCommand]
+            children: [refreshCommand, searchCommand]
         )
 
         builder.insertChild(menu, atStartOfMenu: .file)

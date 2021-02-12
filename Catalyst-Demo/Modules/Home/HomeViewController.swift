@@ -45,6 +45,11 @@ final class HomeViewController: UIViewController {
                          modifierFlags: .command,
                          action: #selector(refresh(_:)))
         refreshKeyCommand.discoverabilityTitle = "Refresh"
+        let searchCommand
+          = UIKeyCommand(input: "F",
+                         modifierFlags: .command,
+                         action: #selector(beginSearch))
+        searchCommand.discoverabilityTitle = "Search"
         let upKeyCommand
           = UIKeyCommand(input: "[",
                          modifierFlags: [.command],
@@ -55,7 +60,7 @@ final class HomeViewController: UIViewController {
                          modifierFlags: [.command],
                          action: #selector(goToNext))
         downKeyCommand.discoverabilityTitle = "Next Entry"
-        return [refreshKeyCommand, upKeyCommand, downKeyCommand]
+        return [refreshKeyCommand, searchCommand, upKeyCommand, downKeyCommand]
     }
     override func pressesBegan(_ presses: Set<UIPress>,
                                with event: UIPressesEvent?) {
@@ -133,10 +138,12 @@ extension HomeViewController {
     }
 
     private func setUpSearchViewController() {
+        // has bug in Catalyst
+        // https://stackoverflow.com/questions/58468235/uisearchcontroller-uisearchbar-behaves-differently-under-macos-than-ios
         resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
-            controller.dimsBackgroundDuringPresentation = false
+            controller.obscuresBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
 
             tableView.tableHeaderView = controller.searchBar
@@ -171,6 +178,10 @@ extension HomeViewController {
                             animated: false,
                             scrollPosition: .middle)
         output?.didSelect(id: viewModels[indexPath.row].country)
+    }
+
+    @objc func beginSearch() {
+        resultSearchController.searchBar.becomeFirstResponder()
     }
 }
 
