@@ -55,6 +55,23 @@ final class HomeViewController: UIViewController {
         downKeyCommand.discoverabilityTitle = "Next Entry"
         return [refreshKeyCommand, upKeyCommand, downKeyCommand]
     }
+    override func pressesBegan(_ presses: Set<UIPress>,
+                               with event: UIPressesEvent?) {
+      for press in presses {
+        guard let key = press.key else { continue }
+        switch key.keyCode {
+        case .keyboardUpArrow,
+             .keyboardLeftArrow:
+            goToPrevious()
+        case .keyboardDownArrow,
+             .keyboardRightArrow:
+            goToNext()
+        default:
+          super.pressesBegan(presses, with: event)
+        }
+      }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewDidLoad()
@@ -99,6 +116,7 @@ extension HomeViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        tableView.allowsMultipleSelection = false
         setUpRefreshControl(with: #selector(self.refresh(_:)))
     }
 

@@ -3,10 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		094A4BF525D62781001BFF94 /* GraphRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A4BF025D62781001BFF94 /* GraphRouter.swift */; };
+		094A4BF625D62781001BFF94 /* GraphModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A4BF125D62781001BFF94 /* GraphModule.swift */; };
+		094A4BF725D62781001BFF94 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A4BF225D62781001BFF94 /* GraphViewController.swift */; };
+		094A4BF825D62781001BFF94 /* GraphInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A4BF325D62781001BFF94 /* GraphInteractor.swift */; };
+		094A4BF925D62781001BFF94 /* GraphPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A4BF425D62781001BFF94 /* GraphPresenter.swift */; };
+		094A4BFE25D62917001BFF94 /* TimeSerieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A4BFD25D62917001BFF94 /* TimeSerieModel.swift */; };
+		094A4C1525D62CEA001BFF94 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 094A4C1425D62CEA001BFF94 /* SwiftUICharts */; };
 		099A777525B8151800D91254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A777425B8151800D91254 /* AppDelegate.swift */; };
 		099A778C25B8151800D91254 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A778B25B8151800D91254 /* Constants.swift */; };
 		099A778F25B8151800D91254 /* Entitlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099A778E25B8151800D91254 /* Entitlements.swift */; };
@@ -72,6 +79,12 @@
 
 /* Begin PBXFileReference section */
 		061C039F2285F37EBF1404BB /* Pods-Catalyst-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catalyst-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Catalyst-Demo/Pods-Catalyst-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		094A4BF025D62781001BFF94 /* GraphRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphRouter.swift; sourceTree = "<group>"; };
+		094A4BF125D62781001BFF94 /* GraphModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphModule.swift; sourceTree = "<group>"; };
+		094A4BF225D62781001BFF94 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		094A4BF325D62781001BFF94 /* GraphInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphInteractor.swift; sourceTree = "<group>"; };
+		094A4BF425D62781001BFF94 /* GraphPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPresenter.swift; sourceTree = "<group>"; };
+		094A4BFD25D62917001BFF94 /* TimeSerieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSerieModel.swift; sourceTree = "<group>"; };
 		096D4AA7AD1617098C7C8473 /* Pods-Catalyst-Demo.dev staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catalyst-Demo.dev staging.xcconfig"; path = "Target Support Files/Pods-Catalyst-Demo/Pods-Catalyst-Demo.dev staging.xcconfig"; sourceTree = "<group>"; };
 		099A777125B8151800D91254 /* .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
 		099A777425B8151800D91254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				357AF8B872E3D165C80A2DAD /* Pods_Catalyst_Demo.framework in Frameworks */,
+				094A4C1525D62CEA001BFF94 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +198,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		094A4BE425D62755001BFF94 /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				094A4BF025D62781001BFF94 /* GraphRouter.swift */,
+				094A4BF125D62781001BFF94 /* GraphModule.swift */,
+				094A4BF225D62781001BFF94 /* GraphViewController.swift */,
+				094A4BF325D62781001BFF94 /* GraphInteractor.swift */,
+				094A4BF425D62781001BFF94 /* GraphPresenter.swift */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
 		099A776825B8151800D91254 = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				099A78A425B8271A00D91254 /* CountrySummaryModel.swift */,
+				094A4BFD25D62917001BFF94 /* TimeSerieModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,6 +325,7 @@
 		099A779C25B8151800D91254 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				094A4BE425D62755001BFF94 /* Graph */,
 				099A78BD25B8456400D91254 /* Detail */,
 				099A782325B81A3B00D91254 /* Home */,
 			);
@@ -539,6 +567,9 @@
 			dependencies = (
 			);
 			name = "Catalyst-Demo";
+			packageProductDependencies = (
+				094A4C1425D62CEA001BFF94 /* SwiftUICharts */,
+			);
 			productName = "Catalyst-Demo";
 			productReference = 099A777125B8151800D91254 /* .app */;
 			productType = "com.apple.product-type.application";
@@ -614,6 +645,9 @@
 				Base,
 			);
 			mainGroup = 099A776825B8151800D91254;
+			packageReferences = (
+				094A4C1325D62CEA001BFF94 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 099A777225B8151800D91254 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -790,12 +824,14 @@
 				099A78C325B8457100D91254 /* DetailRouter.swift in Sources */,
 				099A781E25B81A3400D91254 /* HomeInteractor.swift in Sources */,
 				09ADC27B25BAA68900D019B1 /* PrimarySplitViewController.swift in Sources */,
+				094A4BF625D62781001BFF94 /* GraphModule.swift in Sources */,
 				099A787B25B8221200D91254 /* API.swift in Sources */,
 				099A78C625B8457100D91254 /* DetailInteractor.swift in Sources */,
 				099A782B25B81E4600D91254 /* HomeTableViewCell.swift in Sources */,
 				099A781D25B81A3400D91254 /* HomeViewController.swift in Sources */,
 				099A778F25B8151800D91254 /* Entitlements.swift in Sources */,
 				099A787525B8221200D91254 /* DemoAPI.swift in Sources */,
+				094A4BF725D62781001BFF94 /* GraphViewController.swift in Sources */,
 				099A781B25B81A3400D91254 /* HomeRouter.swift in Sources */,
 				099A78B025B832A500D91254 /* RefreshableViewProtocol.swift in Sources */,
 				099A78A525B8271A00D91254 /* CountrySummaryModel.swift in Sources */,
@@ -807,10 +843,14 @@
 				099A779525B8151800D91254 /* Resource.swift in Sources */,
 				099A787825B8221200D91254 /* Network+Typealias.swift in Sources */,
 				099A787F25B8221200D91254 /* DataService.swift in Sources */,
+				094A4BF925D62781001BFF94 /* GraphPresenter.swift in Sources */,
+				094A4BFE25D62917001BFF94 /* TimeSerieModel.swift in Sources */,
 				099A777525B8151800D91254 /* AppDelegate.swift in Sources */,
 				099A787D25B8221200D91254 /* NetworkServiceFactory.swift in Sources */,
 				099A78A025B8236900D91254 /* NetworkService.swift in Sources */,
 				099A778C25B8151800D91254 /* Constants.swift in Sources */,
+				094A4BF825D62781001BFF94 /* GraphInteractor.swift in Sources */,
+				094A4BF525D62781001BFF94 /* GraphRouter.swift in Sources */,
 				099A78C725B8457100D91254 /* DetailPresenter.swift in Sources */,
 				099A779825B8151800D91254 /* Extensions.swift in Sources */,
 			);
@@ -1272,11 +1312,12 @@
 		};
 		099A77DB25B8151B00D91254 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E0F8698AEF4E2C3920B7E0F /* Pods-Catalyst-Demo.staging.xcconfig */;
+			baseConfigurationReference = 099A77B325B8151800D91254 /* Staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
@@ -1285,8 +1326,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nimble.Catalyst-Demo.staging";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1300,6 +1340,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
@@ -1308,7 +1349,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nimble.Catalyst-Demo.staging";
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -1323,6 +1364,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
@@ -1331,8 +1373,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nimble.Catalyst-Demo.staging";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1346,6 +1387,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
@@ -1354,8 +1396,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nimble.Catalyst-Demo.staging";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1369,6 +1410,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
@@ -1378,7 +1420,6 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1400,7 +1441,6 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1414,6 +1454,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
@@ -1422,7 +1463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nimble.Catalyst-Demo.staging";
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -1437,6 +1478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Catalyst-Demo/.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93QF44Z6JU;
 				INFOPLIST_FILE = "Catalyst-Demo/Info.plist";
@@ -1445,8 +1487,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nimble.Catalyst-Demo.staging";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1853,6 +1894,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		094A4C1325D62CEA001BFF94 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		094A4C1425D62CEA001BFF94 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 094A4C1325D62CEA001BFF94 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 099A776925B8151800D91254 /* Project object */;
 }

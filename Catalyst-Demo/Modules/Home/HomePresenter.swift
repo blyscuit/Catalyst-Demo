@@ -6,14 +6,16 @@
 //  
 //
 
-final class HomePresenter {
+import UIKit
 
+final class HomePresenter {
+    
     let router: HomeRouterInput
     let interactor: HomeInteractorInput
-
+    
     weak var view: HomeViewInput?
     weak var output: HomeOutput?
-
+    
     init(
         router: HomeRouterInput,
         interactor: HomeInteractorInput
@@ -26,26 +28,43 @@ final class HomePresenter {
 // MARK: - HomeViewOutput
 
 extension HomePresenter: HomeViewOutput {
-
+    
     func viewDidLoad() {
         view?.configure()
         didRefresh()
     }
-
+    
     func didRefresh() {
         view?.startRefreshing()
         interactor.fetchData()
     }
-
+    
     func didSelect(id: String) {
+        configureActivityItems(id: id)
         router.showDetail(id: id)
+    }
+    
+    private func configureActivityItems(id: String) {
+        let configuration = UIActivityItemsConfiguration(objects: [])
+        configuration.metadataProvider = { key in
+            switch key {
+            case .title, .messageBody:
+                return id
+            default:
+                return nil
+            }
+        }
+        NotificationCenter.default.post(
+            name: Notification.Name("activityItemsConfigurationDidChange"),
+            object: self,
+            userInfo: ["SelectedModelKey": configuration])
     }
 }
 
 // MARK: - HomeInteractorOutput
 
 extension HomePresenter: HomeInteractorOutput {
-
+    
     func didGetData(_ data: SummaryModel) {
         view?.stopRefreshing()
         view?.updateViewModels(
@@ -58,7 +77,7 @@ extension HomePresenter: HomeInteractorOutput {
             }
         )
     }
-
+    
     func didFailedToGetData(error: Error) {
         view?.stopRefreshing()
     }

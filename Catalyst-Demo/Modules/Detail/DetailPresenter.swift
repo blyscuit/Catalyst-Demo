@@ -14,6 +14,8 @@ final class DetailPresenter {
     weak var view: DetailViewInput?
     weak var output: DetailOutput?
 
+    private var id: String = ""
+
     init(
         router: DetailRouterInput,
         interactor: DetailInteractorInput
@@ -30,6 +32,10 @@ extension DetailPresenter: DetailViewOutput {
     func viewDidLoad() {
         view?.configure()
     }
+
+    func didTapGraph() {
+        router.showGraph(country: id)
+    }
 }
 
 // MARK: - DetailInteractorOutput
@@ -42,6 +48,7 @@ extension DetailPresenter: DetailInteractorOutput {
 extension DetailPresenter: DetailInput {
 
     func setID(_ id: String) {
+        self.id = id
         view?.setDetail(title: id)
     }
 }

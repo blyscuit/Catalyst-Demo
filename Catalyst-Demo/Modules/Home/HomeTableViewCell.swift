@@ -26,6 +26,15 @@ final class HomeTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        if isSelected {
+            backgroundColor = nil
+        } else {
+            backgroundColor = .none
+        }
+    }
 }
 
 // MARK: - Setup
@@ -63,6 +72,26 @@ extension HomeTableViewCell {
 
     private func setUpViews() {
         infoLabel.textAlignment = .right
+        let hoverGesture
+            = UIHoverGestureRecognizer(target: self,
+                                       action: #selector(self.hovering(_:)))
+        self.addGestureRecognizer(hoverGesture)
+    }
+
+    @objc private func hovering(_ recognizer: UIHoverGestureRecognizer) {
+        // 1
+        guard !isSelected else { return }
+        // 2
+        switch recognizer.state {
+        // 3
+        case .began, .changed:
+            backgroundColor = .secondarySystemBackground
+        // 4
+        case .ended:
+            backgroundColor = .none
+        default:
+            break
+        }
     }
 }
 
@@ -70,6 +99,13 @@ extension HomeTableViewCell {
 
 extension HomeTableViewCell {
 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        if selected {
+            backgroundColor = nil
+        }
+    }
+    
     func configure(
         with model: ViewModel
     ) {

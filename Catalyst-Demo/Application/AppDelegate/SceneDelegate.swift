@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import Combine
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+
+    #if targetEnvironment(macCatalyst)
+    private let shareItem =
+        NSSharingServicePickerToolbarItem(itemIdentifier: .shareEntry)
+    #endif
+    private var activityItemsConfigurationSubscriber: AnyCancellable?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
@@ -48,7 +55,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             titlebar.toolbar = nil
         }
         #endif
-        
+
+        #if targetEnvironment(macCatalyst)
+        // 1
+        if let scene = scene as? UIWindowScene,
+           let titlebar = scene.titlebar {
+            // 2
+            let toolbar = NSToolbar(identifier: "Toolbar")
+            // 3
+            titlebar.toolbar = toolbar
+            toolbar.delegate = self
+            toolbar.allowsUserCustomization = true
+            toolbar.autosavesConfiguration = true
+            activityItemsConfigurationSubscriber
+              = NotificationCenter.default
+              .publisher(for: Notification.Name("activityItemsConfigurationDidChange"))
+              .receive(on: RunLoop.main)
+              .map({
+                  $0.userInfo?["SelectedModelKey"]
+                    as? UIActivityItemsConfiguration
+              })
+              .assign(to: \.activityItemsConfiguration,
+                      on: shareItem)
+        }
+        #endif
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -77,5 +107,74 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+}
+
+extension NSToolbarItem.Identifier {
+    static let favouriteEntry =
+        NSToolbarItem.Identifier(rawValue: "FavouriteEntry")
+    static let openEntry =
+        NSToolbarItem.Identifier(rawValue: "OpenEntry")
+    static let shareEntry =
+        NSToolbarItem.Identifier(rawValue: "ShareEntry")
+}
+
+extension SceneDelegate: NSToolbarDelegate {
+
+    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return [.toggleSidebar, .favouriteEntry, .openEntry, .shareEntry, .flexibleSpace]
+    }
+
+    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return [.toggleSidebar, .favouriteEntry, .shareEntry]
+    }
+
+    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+        var item: NSToolbarItem?
+        switch itemIdentifier {
+        case .favouriteEntry:
+            item = NSToolbarItem(itemIdentifier: .favouriteEntry)
+            item?.image = UIImage(systemName: "star")
+            item?.label = "Favourite"
+            item?.toolTip = "Add Favourite"
+            item?.target = self
+            item?.action = #selector(favEntry)
+        case .openEntry:
+            item = NSToolbarItem(itemIdentifier: .openEntry)
+            item?.image = UIImage(systemName: "safari")
+            item?.label = "Web"
+            item?.toolTip = "Open Entry in Web"
+            item?.target = self
+            item?.action = #selector(openEntry)
+        case .shareEntry:
+            return shareItem
+        case .toggleSidebar:
+            item = NSToolbarItem(itemIdentifier: itemIdentifier)
+        default:
+            item = nil
+        }
+        return item
+    }
+
+    // 2.
+    @objc private func openEntry() {
+        guard
+            let splitViewController
+                = window?.rootViewController
+                as? UISplitViewController,
+            let navigationController
+                = splitViewController.viewControllers.last
+                as? UINavigationController,
+            let detailViewContrller
+                = navigationController.topViewController
+                as? DetailViewController else {
+            return
+        }
+        if let url = URL(string: "https://www.google.com/search?q=\(detailViewContrller.selectedDetail)+covid") {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    @objc private func favEntry() {
     }
 }
