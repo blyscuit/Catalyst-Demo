@@ -85,6 +85,7 @@ extension DetailViewController {
         graphButton.setTitle("Graph", for: .normal)
         graphButton.addTarget(self, action: #selector(didTapGraphButton), for: .touchUpInside)
         graphButton.setTitleColor(titleLabel.textColor, for: .normal)
+        graphButton.isPointerInteractionEnabled = true
 
         #if targetEnvironment(macCatalyst)
         navigationController?.navigationBar.isHidden = true
