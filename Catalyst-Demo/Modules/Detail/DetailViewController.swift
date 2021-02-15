@@ -31,6 +31,8 @@ final class DetailViewController: UIViewController {
     private let titleLabel = UILabel()
     private let graphButton = UIButton()
 
+    private var dropInteraction: UIDropInteraction?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewDidLoad()
@@ -85,14 +87,40 @@ extension DetailViewController {
         graphButton.setTitle("Graph", for: .normal)
         graphButton.addTarget(self, action: #selector(didTapGraphButton), for: .touchUpInside)
         graphButton.setTitleColor(titleLabel.textColor, for: .normal)
-        graphButton.isPointerInteractionEnabled = true
-
-        #if targetEnvironment(macCatalyst)
+        if #available(macCatalyst 13.4, *) {
+            graphButton.isPointerInteractionEnabled = true
+        } else if #available(iOS 13.4, *) {
+            graphButton.isPointerInteractionEnabled = true
+        }
+       #if targetEnvironment(macCatalyst)
         navigationController?.navigationBar.isHidden = true
         #endif
+
+        dropInteraction = UIDropInteraction(delegate: self)
+        view.interactions.append(dropInteraction!)
     }
 
     @objc func didTapGraphButton() {
         output?.didTapGraph()
+    }
+}
+
+// MARK: - UIDropInteractionDelegate
+
+extension DetailViewController: UIDropInteractionDelegate {
+
+    func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
+        session.canLoadObjects(ofClass: String.self)
+    }
+
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        UIDropProposal(operation: .copy)
+    }
+
+    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        session.loadObjects(ofClass: String.self) {
+          [weak self] string in
+            (self?.output as? DetailInput)?.setID(string.first ?? "")
+        }
     }
 }
