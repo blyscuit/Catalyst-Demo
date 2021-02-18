@@ -47,20 +47,34 @@ struct ListTimeline: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (ListEntry) -> Void) {
-        let fakeItem = ListItem(id: "", title: "")
-        let entry = ListEntry(date: Date(), items: [fakeItem, fakeItem, fakeItem])
-        completion(entry)
+        let currentDate = Date()
+
+        let itemNumber = Int(context.displaySize.height / 50.0)
+
+        ListLoader.fetch { result in
+            let items: [ListItem]
+            switch result {
+            case .success(let list):
+                items = Array(list.prefix(itemNumber))
+            case .failure(let error):
+                items = [ListItem(id: error.localizedDescription, title: error.localizedDescription)]
+            }
+            let entry = ListEntry(date: currentDate, items: items)
+            completion(entry)
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<ListEntry>) -> Void) {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
 
+        let itemNumber = Int(context.displaySize.height / 50.0)
+
         ListLoader.fetch { result in
             let items: [ListItem]
             switch result {
             case .success(let list):
-                items = list
+                items = Array(list.prefix(itemNumber))
             case .failure(let error):
                 items = [ListItem(id: error.localizedDescription, title: error.localizedDescription)]
             }

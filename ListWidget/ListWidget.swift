@@ -27,14 +27,14 @@ struct ListWidgetEntryView : View {
 
 @main
 struct ListWidget: Widget {
-    let kind: String = "ListWidget"
+    let kind: String = "List"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: ListTimeline()) { entry in
             ListWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("List")
+        .description("List of items and detail.")
     }
 }
 
