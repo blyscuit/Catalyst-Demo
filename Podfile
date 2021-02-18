@@ -25,6 +25,11 @@ target 'Catalyst-Demo' do
   target 'UITests' do
     testing_pods
   end
+
+  target 'ListWidgetExtension' do
+    pod 'Alamofire'
+    pod 'R.swift'
+  end
 end
 
 post_install do |installer|

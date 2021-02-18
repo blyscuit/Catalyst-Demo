@@ -1,0 +1,6 @@
+framework module Pods_Catalyst_Demo_ListWidgetExtension {
+  umbrella header "Pods-Catalyst-Demo-ListWidgetExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}
