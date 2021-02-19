@@ -13,6 +13,11 @@ struct ListItem {
 
     let id: String
     let title: String
+
+    var widgetURL: URL {
+        let urlString = id.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+        return URL(string: "catalystdemoconfusians://\(urlString)") ?? URL(fileURLWithPath: "")
+    }
 }
 
 struct ListEntry: TimelineEntry {
@@ -49,7 +54,16 @@ struct ListTimeline: TimelineProvider {
     func getSnapshot(in context: Context, completion: @escaping (ListEntry) -> Void) {
         let currentDate = Date()
 
-        let itemNumber = Int(context.displaySize.height / 50.0)
+        let itemNumber: Int = {
+            switch context.family {
+            case .systemLarge:
+                return 6
+            case .systemMedium:
+                return 3
+            default:
+                return 3
+            }
+        }()
 
         ListLoader.fetch { result in
             let items: [ListItem]
@@ -57,7 +71,7 @@ struct ListTimeline: TimelineProvider {
             case .success(let list):
                 items = Array(list.prefix(itemNumber))
             case .failure(let error):
-                items = [ListItem(id: error.localizedDescription, title: error.localizedDescription)]
+                items = [ListItem(id: error.localizedDescription, title: "")]
             }
             let entry = ListEntry(date: currentDate, items: items)
             completion(entry)
@@ -68,7 +82,16 @@ struct ListTimeline: TimelineProvider {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
 
-        let itemNumber = Int(context.displaySize.height / 50.0)
+        let itemNumber: Int = {
+            switch context.family {
+            case .systemLarge:
+                return 6
+            case .systemMedium:
+                return 3
+            default:
+                return 3
+            }
+        }()
 
         ListLoader.fetch { result in
             let items: [ListItem]

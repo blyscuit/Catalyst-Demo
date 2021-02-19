@@ -12,16 +12,23 @@ struct ListWidgetEntryView : View {
     let entry: ListEntry
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: nil) {
             ForEach(entry.items, id: \.id) { entry in
-                HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: nil, content: {
-                    Text(entry.id).multilineTextAlignment(.leading)
-                    Text(entry.title).multilineTextAlignment(.trailing)
-                })
-                .padding()
+                Link(destination: entry.widgetURL) {
+                    HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 4, content: {
+                        Text(entry.id).multilineTextAlignment(.leading)
+                        Spacer()
+                        Text(entry.title).multilineTextAlignment(.trailing)
+                    })
+                    .frame(minWidth: 0,
+                           maxWidth: .infinity,
+                           minHeight: 0,
+                           maxHeight: .infinity)
+                    .padding()
+                }
+                Divider()
             }
-        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-        .padding()
+        }
     }
 }
 

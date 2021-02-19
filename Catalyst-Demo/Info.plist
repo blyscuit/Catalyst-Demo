@@ -62,5 +62,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.nimble.Catalyst-Demo.staging</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>catalystdemoconfusians</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import WidgetKit
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -79,6 +80,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                       on: shareItem)
         }
         #endif
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -109,6 +111,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 }
+
 #if targetEnvironment(macCatalyst)
 extension NSToolbarItem.Identifier {
     static let favouriteEntry =
@@ -159,18 +162,18 @@ extension SceneDelegate: NSToolbarDelegate {
     // 2.
     @objc private func openEntry() {
         guard
+
             let splitViewController
                 = window?.rootViewController
                 as? UISplitViewController,
-            let navigationController
+            let detailViewController
                 = splitViewController.viewControllers.last
-                as? UINavigationController,
-            let detailViewContrller
-                = navigationController.topViewController
+                as? DetailViewController ??
+                (splitViewController.viewControllers.last as? UINavigationController)?.viewControllers.first
                 as? DetailViewController else {
             return
         }
-        if let url = URL(string: "https://www.google.com/search?q=\(detailViewContrller.selectedDetail)+covid") {
+        if let url = URL(string: "https://www.google.com/search?q=\(detailViewController.selectedDetail)+covid") {
             UIApplication.shared.open(url)
         }
     }
@@ -179,3 +182,23 @@ extension SceneDelegate: NSToolbarDelegate {
     }
 }
 #endif
+
+extension SceneDelegate {
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard
+            let splitedString = URLContexts.first?.url.absoluteString.split(whereSeparator: {$0 == "/"}).map(String.init),
+            let item = splitedString.last,
+            let splitViewController
+                = window?.rootViewController
+                as? UISplitViewController,
+            let detailViewController
+                = splitViewController.viewControllers.last
+                as? DetailViewController ??
+                (splitViewController.viewControllers.last as? UINavigationController)?.viewControllers.first
+                as? DetailViewController else {
+            return
+        }
+        (detailViewController.output as? DetailInput)?.setID(item)
+    }
+}
