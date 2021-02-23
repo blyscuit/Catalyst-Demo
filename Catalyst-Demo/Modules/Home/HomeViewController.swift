@@ -280,4 +280,13 @@ extension HomeViewController: UIContextMenuInteractionDelegate {
     func createNewWindow() {
         UIApplication.shared.requestSceneSessionActivation(nil, userActivity: nil, options: nil, errorHandler: nil)
     }
+
+    override func validate(_ command: UICommand) {
+        switch command.action {
+        case #selector(refresh(_:)):
+            command.title = "Refresh (Last: \(Date()))"
+        default:
+            break
+        }
+    }
 }

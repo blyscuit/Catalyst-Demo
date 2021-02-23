@@ -75,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let searchCommand = UIKeyCommand(
             title: "Search",
+            image: UIImage(systemName: "magnifyingglass"),
             action: #selector(HomeViewController.beginSearch),
             input: "F",
             modifierFlags: .command
