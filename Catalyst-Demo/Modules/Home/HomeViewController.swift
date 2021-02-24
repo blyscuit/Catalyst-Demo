@@ -30,7 +30,7 @@ final class HomeViewController: UIViewController {
 
     private let tableView = UITableView()
 
-    private var viewModels = [HomeTableViewCell.ViewModel]()
+    internal var viewModels = [HomeTableViewCell.ViewModel]()
 
     let refreshControl = AnimatableRefreshControl()
 
@@ -99,6 +99,9 @@ extension HomeViewController: HomeViewInput {
     func updateViewModels(_ viewModels: [HomeTableViewCell.ViewModel]) {
         self.viewModels = viewModels
         tableView.reloadData()
+        #if targetEnvironment(macCatalyst)
+        touchBar = nil
+        #endif
     }
 }
 
